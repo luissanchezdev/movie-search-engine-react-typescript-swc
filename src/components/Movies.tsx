@@ -3,7 +3,7 @@ import Movie from "./Movie"
 
 export const ListOfMovies = ({ movies } : { movies : TypeMovies[] }) => {
   return (
-    <ul>
+    <ul className="movies">
       { 
         movies?.map(movie => (
           <Movie movie={ movie } key={ movie.id } />

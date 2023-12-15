@@ -2,6 +2,7 @@ import './App.css'
 import Movies from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import useSearch from './hooks/useSearch'
+import { useRef } from 'react'
 
 
 function App() {
@@ -41,7 +42,6 @@ function App() {
         { error && <p>{ error }</p> }
       </header>
       <main>
-        <p>input value: { search }</p>
         <Movies movies={ movies } />
       </main>
     </div>
