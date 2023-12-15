@@ -2,17 +2,17 @@ import './App.css'
 import Movies from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import useSearch from './hooks/useSearch'
-import { useRef } from 'react'
 
 
 function App() {
-  const { movies } = useMovies()
   const { search, setSearch, error, setError } = useSearch()
+  const { movies, getMovies } = useMovies({ search })
 
   const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
     console.log(data.get('input-search'))
+    getMovies()
   }
 
   const handleChange  = (e : React.ChangeEvent<HTMLInputElement>) => {

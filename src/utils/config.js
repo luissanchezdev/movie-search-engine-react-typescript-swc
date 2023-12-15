@@ -1,3 +1,9 @@
 require('dotenv').config()
 
-export const apiKey = process.env.API_KEY
+const apiKey = process.env.API_KEY
+const baseUrl = `http://www.omdbapi.com/?apikey=${ apiKey }&`
+
+export {
+  apiKey,
+  baseUrl
+}

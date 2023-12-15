@@ -29,13 +29,22 @@ main {
 
 .movies {
     display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    width: calc(100% - 2rem);
+    gap:2rem;
+    padding: 0rem;
+}
+
+@media (min-width: 768px) {
+    .movies {
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
 }
 
 .movie {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    list-style: none;
 }
 
 .movie img {

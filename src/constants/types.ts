@@ -5,3 +5,8 @@ export type TypeMovies = {
   year: string;
   type: string;
 }
+
+export type TypeMovieNoResults ={
+  Response: string;
+  Error: string;
+}
