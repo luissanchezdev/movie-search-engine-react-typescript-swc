@@ -1,16 +1,12 @@
 import { TypeMovies } from "../constants/types"
+import Movie from "./Movie"
 
 export const ListOfMovies = ({ movies } : { movies : TypeMovies[] }) => {
   return (
     <ul>
       { 
-        movies.map(movie => (
-          <li key={ movie.imdbID }>
-            <img src={ movie.Poster } alt={ movie.Title } />
-            <h3>{ movie.Title }</h3>
-            <p>{ movie.Type }</p>
-            <p>{ movie.Year }</p>
-          </li>
+        movies?.map(movie => (
+          <Movie movie={ movie } key={ movie.id } />
         ) )
       }
     </ul>
