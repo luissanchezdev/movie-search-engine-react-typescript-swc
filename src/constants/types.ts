@@ -6,7 +6,15 @@ export type TypeMovies = {
   type: string;
 }
 
+export type TypeMoviesApi = {
+  imdbID: string;
+  Poster: string;
+  Title: string;
+  Year: string;
+  Type: string;
+}
+
 export type TypeMovieNoResults ={
-  Response: string;
-  Error: string;
+  Response?: string;
+  Error?: string;
 }

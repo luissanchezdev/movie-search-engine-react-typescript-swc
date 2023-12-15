@@ -6,7 +6,7 @@ import useSearch from './hooks/useSearch'
 
 function App() {
   const { search, setSearch, error, setError } = useSearch()
-  const { movies, getMovies } = useMovies({ search })
+  const { movies, getMovies, loading } = useMovies({ search })
 
   const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,7 +42,9 @@ function App() {
         { error && <p>{ error }</p> }
       </header>
       <main>
-        <Movies movies={ movies } />
+        {
+          loading ? <p>loading...</p> : <Movies movies={ movies } />
+        }
       </main>
     </div>
   )

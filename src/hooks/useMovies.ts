@@ -1,37 +1,27 @@
-import responseWithResults from '../mocks/response-with-results.json'
-import responseWithoutResults from '../mocks/response-without-results.json'
 import { useState } from 'react'
-import { TypeMovies, TypeMovieNoResults } from '../constants/types'
-
-const newResponseWithResults = responseWithResults.Search?.map(movie => ({
-  id: movie.imdbID,
-  poster: movie.Poster,
-  title: movie.Title,
-  year: movie.Year,
-  type: movie.Type
-}))
+import { TypeMovies } from '../constants/types';
+import searchMovies from '../services/movies';
 
 export function useMovies({ search } : { search : string }) {
-  const [responseMovies, setResponseMovies] = useState<TypeMovies[] | TypeMovieNoResults>([])
-  const movies = Array.isArray(responseMovies) ? responseMovies : []
-
- /*  const mappedMovies = movies?.map(movie => ({
-      id: movie.imdbID,
-      poster: movie.Poster,
-      title: movie.Title,
-      year: movie.Year,
-      type: movie.Type
-    })
-  ) */
+  const [movies, setMovies] = useState<TypeMovies[] | null>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>('')
   
-  const getMovies = () => {
-    if(search) {
-      return setResponseMovies(newResponseWithResults) 
-    } else {
-      return setResponseMovies(responseWithoutResults)
+  const getMovies = async () => {
+
+    try {
+      setLoading(true)
+      setError(null)
+      const newData = await searchMovies(search)
+      setMovies(newData)
+    } catch(e : any) {
+      setError(e.message)
+    } finally {
+      setLoading(false)
     }
+
   }
+  
 
-
-  return { movies , getMovies }
+  return { movies , getMovies, loading, error }
 }

@@ -1,7 +1,7 @@
 import { TypeMovies } from "../constants/types"
 import Movie from "./Movie"
 
-export const ListOfMovies = ({ movies } : { movies : TypeMovies[] }) => {
+export const ListOfMovies = ({ movies } : { movies : TypeMovies[] | null }) => {
   return (
     <ul className="movies">
       { 
@@ -20,8 +20,8 @@ export const ListOfMovies = ({ movies } : { movies : TypeMovies[] }) => {
 }
 
 
-const Movies = ({ movies } : { movies : TypeMovies[]})  => {
-  const hasMovies = movies.length > 0
+const Movies = ({ movies } : { movies : TypeMovies[] | null})  => {
+  const hasMovies = movies != null && movies.length > 0
 
   return (
     <>
