@@ -1,6 +1,7 @@
 # React + TypeScript + Vite
 
-![Uploading movie-search-engine.png…]()
+![movie-search-engine](https://github.com/luissanchezdev/movie-search-engine-react-typescript-swc/assets/50006980/065fa0de-c50b-426b-93c4-60fb0200a02e)
+
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
