@@ -18,3 +18,8 @@ export type TypeMovieNoResults ={
   Response?: string;
   Error?: string;
 }
+
+export type TypePropsUseMovies = {
+  search: string,
+  sort: boolean
+}

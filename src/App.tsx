@@ -2,11 +2,13 @@ import './App.css'
 import Movies from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import useSearch from './hooks/useSearch'
-
+import { useState } from 'react'
+import { TypePropsUseMovies } from './constants/types'
 
 function App() {
   const { search, setSearch, error, setError } = useSearch()
-  const { movies, getMovies, loading } = useMovies({ search })
+  const [sort, setSort] = useState<Boolean>(false)
+  const { movies, getMovies, loading } = useMovies({ search, sort } as TypePropsUseMovies)
 
   const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -24,6 +26,10 @@ function App() {
     }
   }
 
+  const handleSort = () => {
+    setSort(!sort)
+  }
+
   return (
     <div className='page'>
       <header>
@@ -37,6 +43,7 @@ function App() {
             name='input-search' 
             placeholder='Avatar, Titanic, Martian...'
           />
+          <input type='checkbox' id='sort' name='sort' onChange={ handleSort } />
           <button type='submit'>Search</button>
         </form>
         { error && <p>{ error }</p> }

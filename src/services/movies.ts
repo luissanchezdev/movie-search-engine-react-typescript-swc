@@ -1,7 +1,6 @@
 import { TypeMoviesApi, TypeMovies } from '../constants/types'
 import { baseURL } from '../utils/config'
 
-
 const searchMovies = async (search : string) => {
 
   if(search === '') {
