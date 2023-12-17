@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { TypeMovies, TypePropsUseMovies } from '../constants/types';
 import searchMovies from '../services/movies';
 import { useRef } from 'react';
@@ -9,8 +9,8 @@ export function useMovies({ search, sort }: TypePropsUseMovies ) {
   const [error, setError] = useState<string | null>('')
   const previusSearch = useRef<string | null>(search)
   
-  const getMovies = async () => {
-
+  const getMovies = useMemo(() => {
+    return async ({ search } : { search : string }) => {
     if(previusSearch.current === search) return
 
     try {
@@ -25,9 +25,16 @@ export function useMovies({ search, sort }: TypePropsUseMovies ) {
       setLoading(false)
     }
 
-  }
+  }}, [])
 
-  const sortMovies = movies === null ? null : sort ? movies.sort((a,b) => a.title.localeCompare(b.title)) : movies
+  useEffect(() => {
+    console.log('render getMovies()')
+  },[getMovies])
+
+  const sortMovies = useMemo(() => {
+    console.log('render sortMovies')
+    return movies === null ? null : sort ? [...movies].sort((a,b) => a.title.localeCompare(b.title)) : movies
+  },[movies, sort])
   
   return { movies : sortMovies , getMovies, loading, error }
 }

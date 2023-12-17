@@ -12,9 +12,8 @@ function App() {
 
   const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    console.log(data.get('input-search'))
-    getMovies()
+    
+    getMovies({ search })
   }
 
   const handleChange  = (e : React.ChangeEvent<HTMLInputElement>) => {
